@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlk0cpgg37m13"]
+
+[ext_resource type="Script" uid="uid://bnwjjyoy7iq6l" path="res://scripts/splashMenu.gd" id="1_py0ck"]
+[ext_resource type="Texture2D" uid="uid://t7qtx684pc4u" path="res://assets/sprites/logoGame.png" id="1_wxot6"]
+[ext_resource type="FontFile" uid="uid://bdk4mnsgx2ejv" path="res://assets/fonts/wheaton-capitals/wheaton capitals.otf" id="2_l2g8s"]
+[ext_resource type="StyleBox" uid="uid://cr3qpt8ugcshk" path="res://themes/firstDisabledStyle.tres" id="3_l3ux5"]
+[ext_resource type="StyleBox" uid="uid://dofug84rav63i" path="res://themes/firstHoverStyle.tres" id="3_rc2kg"]
+[ext_resource type="StyleBox" uid="uid://sti0o38at1qu" path="res://themes/firstFocusStyle.tres" id="3_s8jxw"]
+[ext_resource type="StyleBox" uid="uid://dltbwasoyv73h" path="res://themes/firstNormalStyle.tres" id="4_m7gka"]
+
+[sub_resource type="Theme" id="Theme_wxot6"]
+default_font = ExtResource("2_l2g8s")
+Button/colors/font_color = Color(0.973535, 0.9735351, 0.973535, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 0.5019608)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("2_l2g8s")
+Button/styles/disabled = ExtResource("3_l3ux5")
+Button/styles/focus = ExtResource("3_s8jxw")
+Button/styles/hover = ExtResource("3_rc2kg")
+Button/styles/normal = ExtResource("4_m7gka")
+Button/styles/pressed = ExtResource("3_s8jxw")
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_py0ck")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 70
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_wxot6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="startBTN" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_wxot6")
+text = "START"
+
+[node name="continueBTN" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_wxot6")
+text = "CONTINUE"
+
+[node name="creditsBTN" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_wxot6")
+text = "CREDITS"
+
+[node name="quitBTN" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_wxot6")
+text = "QUIT
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/startBTN" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/quitBTN" to="." method="_on_quit_btn_pressed"]
