@@ -1,4 +1,8 @@
+class_name Arena
 extends Node2D
+
+@onready var scoreLabel: Label = %ScoreLabel
+@onready var waveLabel: Label = %WaveLabel
 
 @onready var player: Player = $Player
 @export var spawnMargin := 200 # margin basica de 200 pixels
@@ -18,6 +22,9 @@ var isSpawning := false
 
 func _ready():
 	spawnWave()
+	waveLabel.text = "WAVE: "+ str(currentWave)
+	updateScoreLabel(Global.score)
+	Global.scoreUpdate.connect(updateScoreLabel)
 
 func onEnemyExit(enemy):
 	if enemy in activeEnemies:
@@ -30,6 +37,7 @@ func spawnWave():
 	if isSpawning:
 		return
 	isSpawning = true
+	waveLabel.text = "WAVE: "+ str(currentWave)
 	print("Iniciando spawn da wave:" + str(currentWave))
 	for enemy in enemiesPerWave:
 		spawnEnemy()
@@ -70,5 +78,5 @@ func calculateSpawnPosition() -> Vector2:
 	var spawnPos = playerPos + Vector2.RIGHT.rotated(angle) * spawnDistance
 	return spawnPos
 
-#func _on_spawn_timer_timeout() -> void:
-	#spawnEnemy()
+func updateScoreLabel(score):
+	scoreLabel.text = "SCORE: " + str("%02d" %Global.score)

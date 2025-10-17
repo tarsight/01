@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var player_hp_bar: ProgressBar = %PlayerHPBar
+
 # MOVEMENT
 @export var max_speed := 300.0
 @export var accel := 1500.0

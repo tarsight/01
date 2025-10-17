@@ -8,6 +8,7 @@ _data = [Vector2(0.26415095, 0.48738176), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.
 point_count = 2
 
 [node name="BloodParticles" type="CPUParticles2D"]
+z_index = -1
 texture = ExtResource("1_kldb6")
 lifetime = 0.2
 speed_scale = 0.8

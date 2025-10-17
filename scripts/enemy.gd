@@ -4,6 +4,7 @@ extends CharacterBody2D
 var originalColor = Color.WHITE # placeholder para atribuir dps no ready
 const BLOOD_PARTICLES = preload("uid://dodcn7r7l4qra")
 
+@export var scorePoints := 10
 var player = null
 # status
 @export var hp := 3
@@ -53,4 +54,5 @@ func takeDMG(amount: int, sourcePosition: Vector2):
 		bloodInstance.global_position = global_position
 		bloodInstance.rotation = direction.angle() * PI
 		queue_free() # trocar por object pooling, so DESTROY objeto se quando nao for mais usado
+		Global.score += scorePoints # scorePoints sera passado como param do evento, logo realmente ativa o evento e emite TODOS os eventos conectados ao socreUPdate signal
 	print("HP do inimigo:" + str(hp) + "; Dano causado: "+ str(amount))
