@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnkonpqorxmky"]
+
+[ext_resource type="Texture2D" uid="uid://c75jrp57x4wfs" path="res://assets/icon.svg" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dc7236rgw17v" path="res://scripts/player.gd" id="1_b0kkn"]
+[ext_resource type="PackedScene" uid="uid://dutr7vxlv2v0i" path="res://prefabs/bullet.tscn" id="2_1txc5"]
+[ext_resource type="Script" uid="uid://gpw2v6mntdyf" path="res://scripts/laser.gd" id="3_r66lb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ytnb3"]
+radius = 61.0
+height = 122.0
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_b0kkn")
+bullet_prefab = ExtResource("2_1txc5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ytnb3")
+
+[node name="Laser" type="Node2D" parent="."]
+script = ExtResource("3_r66lb")
+
+[node name="Line2D" type="Line2D" parent="Laser"]
+default_color = Color(1, 0, 0, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="Laser"]

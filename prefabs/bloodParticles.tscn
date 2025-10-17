@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dodcn7r7l4qra"]
+
+[ext_resource type="Texture2D" uid="uid://bviesin8qov8w" path="res://assets/Square.png" id="1_kldb6"]
+[ext_resource type="Script" uid="uid://bj1gel28je0tu" path="res://scripts/blood_particles.gd" id="2_uc18i"]
+
+[sub_resource type="Curve" id="Curve_uc18i"]
+_data = [Vector2(0.26415095, 0.48738176), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="BloodParticles" type="CPUParticles2D"]
+texture = ExtResource("1_kldb6")
+lifetime = 0.2
+speed_scale = 0.8
+explosiveness = 1.0
+randomness = 0.3
+local_coords = true
+spread = 20.0
+initial_velocity_min = 150.0
+initial_velocity_max = 850.0
+scale_amount_min = 0.3
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_uc18i")
+color = Color(0.5764706, 0, 0.22352941, 1)
+script = ExtResource("2_uc18i")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
