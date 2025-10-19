@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqc658g8fqiqx"]
+
+[ext_resource type="PackedScene" uid="uid://b6e2rrcdvvevg" path="res://prefabs/powerups/PowerUp.tscn" id="1_ye4e0"]
+
+[node name="PowerUpMegaShot" instance=ExtResource("1_ye4e0")]
+modulate = Color(8.946304e-06, 0.33259237, 0.069050975, 1)
+rotation = 0.7853982
+type = "megaShot"

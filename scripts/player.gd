@@ -15,8 +15,14 @@ var aim_direction: Vector2 = Vector2.RIGHT
 
 # SHOOT
 @export var bullet_prefab: PackedScene
-@export var shoot_cd := 0.18
+@export var shootCD := 0.18
 var can_shoot := true
+
+var powerUps := {
+	"rapidFire": false,
+	"megaShot": false,
+	"freezeEnemies": false
+}
 
 # GAMEPAD AXIS MAPPING (ajuste se necessário)
 @export var gp_left_x := 0
@@ -112,8 +118,29 @@ func _shoot(direction: Vector2) -> void:
 		return
 	can_shoot = false
 	var bullet = bullet_prefab.instantiate()
+	if powerUps["megaShot"]:
+		bullet.scale *= 2
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = global_position
 	bullet.set_direction(direction)
-	await get_tree().create_timer(shoot_cd).timeout
+	await get_tree().create_timer(shootCD).timeout
 	can_shoot = true
+
+func applyPowerUp(type: String):
+	match type:
+		"rapidFire":
+			powerUps["rapidFire"] = true
+			var previousShootCD = shootCD
+			shootCD = 0.01
+			await get_tree().create_timer(3.0).timeout
+			shootCD = previousShootCD
+			powerUps["rapidFire"] = false
+		"megaShot":
+			powerUps["megaShot"] = true
+			await get_tree().create_timer(3.0).timeout
+			powerUps["megaShot"] = false
+		"freezeEnemies":
+			powerUps["freezeEnemies"] = true
+			Global.freezeEnemies.emit(5.0)
+			await get_tree().create_timer(3.0).timeout
+			powerUps["freezeEnemies"] = false

@@ -15,12 +15,18 @@ var kbSpeed := Vector2.ZERO
 @export var kbMultiplier := 600.0
 @export var kbDecay := 800.0
 @export var defaultFlashTime := 0.05
-
+var isFrozen := false
 var direction = Vector2.ZERO
 
 func _ready() -> void:
 	player = Global.player
 	originalColor = sprite.modulate
+	Global.freezeEnemies.connect(onFreezeEnemies)
+
+func onFreezeEnemies(duration: float):
+	isFrozen = true
+	await get_tree().create_timer(duration).timeout
+	isFrozen = false
 	
 func hitFlash(flashTime: float):
 	for piscada in 3: # pisca 3 vezes
@@ -30,6 +36,10 @@ func hitFlash(flashTime: float):
 		await get_tree().create_timer(flashTime).timeout
 
 func _physics_process(delta: float) -> void:
+	if isFrozen:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	if kbSpeed.length()>1:
 		velocity = kbSpeed
 		move_and_slide()

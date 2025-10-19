@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://uswct46weip8"]
 
-[ext_resource type="PackedScene" uid="uid://bnkonpqorxmky" path="res://prefabs/player.tscn" id="1_e05a3"]
+[ext_resource type="PackedScene" uid="uid://bnkonpqorxmky" path="res://prefabs/entities/player.tscn" id="1_e05a3"]
 [ext_resource type="Script" uid="uid://b10vs6r3kjcc" path="res://scripts/arena.gd" id="1_olpmc"]
 [ext_resource type="FontFile" uid="uid://bdk4mnsgx2ejv" path="res://assets/fonts/wheaton-capitals/wheaton capitals.otf" id="3_olpmc"]
 
@@ -20,6 +20,10 @@ position = Vector2(730, 378)
 environment = SubResource("Environment_wl4x5")
 
 [node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="PowerUpSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -72,3 +76,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]

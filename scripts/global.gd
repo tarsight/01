@@ -2,6 +2,7 @@
 extends Node
 
 var player
+signal freezeEnemies
 signal scoreUpdate
 
 var score := 0:

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dor7401i223ta"]
+
+[ext_resource type="PackedScene" uid="uid://b6e2rrcdvvevg" path="res://prefabs/powerups/PowerUp.tscn" id="1_mpqgo"]
+[ext_resource type="Texture2D" uid="uid://bviesin8qov8w" path="res://assets/sprites/Square.png" id="2_4astg"]
+
+[node name="PowerUpFreezeEnemies" instance=ExtResource("1_mpqgo")]
+modulate = Color(0.24313726, 0.5568628, 1, 1)
+type = "freezeEnemies"
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="2"]
+rotation = 0.7853982
+texture = ExtResource("2_4astg")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do4cij2jhn2v5"]
+
+[ext_resource type="PackedScene" uid="uid://b6e2rrcdvvevg" path="res://prefabs/powerups/PowerUp.tscn" id="1_03q35"]
+
+[node name="PowerUpRapidFire" instance=ExtResource("1_03q35")]
+modulate = Color(1, 1, 0, 1)

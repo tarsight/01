@@ -13,6 +13,13 @@ extends Node2D
 	"B": preload("uid://c1dmeqcgp20oe"),
 	"C": preload("uid://blbq48yoao43w")
 }
+
+var powerUpsPrefabs := {
+	"megaShot": preload("uid://cqc658g8fqiqx"),
+	"rapidFire": preload("uid://do4cij2jhn2v5"),
+	"freezeEnemies": preload("uid://dor7401i223ta")
+}
+
 var activeEnemies := []
 @export var currentWave :=1
 @export var enemiesPerWave := 3
@@ -80,3 +87,25 @@ func calculateSpawnPosition() -> Vector2:
 
 func updateScoreLabel(score):
 	scoreLabel.text = "SCORE: " + str("%02d" %Global.score)
+
+
+func _on_power_up_spawn_timer_timeout() -> void:
+	randomSpawnPowerUp()
+	
+func randomSpawnPowerUp():
+	if randf() > 0.2:
+		return
+	
+	var powerUpIndex = randi() % 3
+	var powerUp
+	
+	if powerUpIndex == 0:
+		powerUp = powerUpsPrefabs["rapidFire"].instantiate()
+	elif powerUpIndex == 1:
+		powerUp = powerUpsPrefabs["megaShot"].instantiate()
+	elif powerUpIndex == 2:
+		powerUp = powerUpsPrefabs["freezeEnemies"].instantiate()
+		
+	if powerUp:
+		powerUp.position = Vector2(randi_range(100,600), randi_range(100,600))
+		add_child(powerUp)

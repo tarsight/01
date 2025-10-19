@@ -31,5 +31,9 @@ DIA 005 - 16/10/2025
 
 DIA 006 - 17/10/2025
 
- [x] HUD - score e waves
- [ ] UI - Menu inicial
+	[x] HUD - score e waves
+	[x] UI - Menu inicial
+
+DIA 007 - 18/10/2025
+
+	[x] powerups iniciais

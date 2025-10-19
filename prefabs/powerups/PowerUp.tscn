@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6e2rrcdvvevg"]
+
+[ext_resource type="Script" uid="uid://fc8rodbrj5a1" path="res://scripts/powerUp.gd" id="1_gvc6q"]
+[ext_resource type="Texture2D" uid="uid://bviesin8qov8w" path="res://assets/sprites/Square.png" id="2_w715p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qeri"]
+
+[node name="PowerUp" type="Area2D"]
+script = ExtResource("1_gvc6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1qeri")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_w715p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
