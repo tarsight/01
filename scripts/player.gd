@@ -2,6 +2,9 @@ extends CharacterBody2D
 class_name Player
 
 @onready var player_hp_bar: ProgressBar = %PlayerHPBar
+@onready var viewportSize: Vector2 = get_viewport_rect().size
+@onready var sprite2d: Sprite2D = $Sprite2D
+var spriteSize
 
 # MOVEMENT
 @export var max_speed := 300.0
@@ -35,6 +38,7 @@ var move_input := Vector2.ZERO
 
 func _ready() -> void:
 	Global.player = self
+	spriteSize = sprite2d.get_rect().size * sprite2d.scale
 
 func _physics_process(delta: float) -> void:
 	move_input = _get_move_input()
@@ -45,6 +49,8 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	if has_node("Laser"):
 		$Laser.update_laser(aim_direction)
+	global_position.x = clamp(global_position.x, spriteSize.x/4, viewportSize.x - spriteSize.x/4)
+	global_position.y = clamp(global_position.y, spriteSize.y/4, viewportSize.y - spriteSize.y/4)
 
 # INPUT
 func _get_move_input():

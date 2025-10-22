@@ -63,6 +63,9 @@ func takeDMG(amount: int, sourcePosition: Vector2):
 		add_sibling(bloodInstance)
 		bloodInstance.global_position = global_position
 		bloodInstance.rotation = direction.angle() * PI
+		bloodInstance.modulate = Color.from_hsv(originalColor.h, 0.85,1.0,0.7)
+		CameraEffects.startShake(5.0)
+		
 		queue_free() # trocar por object pooling, so DESTROY objeto se quando nao for mais usado
 		Global.score += scorePoints # scorePoints sera passado como param do evento, logo realmente ativa o evento e emite TODOS os eventos conectados ao socreUPdate signal
 	print("HP do inimigo:" + str(hp) + "; Dano causado: "+ str(amount))
